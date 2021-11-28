@@ -21,7 +21,7 @@ def get_mail():
     body = request_data["body"]
 
     message = MIMEText(body.capitalize())
-    message['From'] = server_username
+    message['From'] = "Future Intern - Task Complete"
     message['To'] = to
     message['Subject'] = subject.capitalize()
 
