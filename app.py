@@ -1,5 +1,6 @@
 from flask import Flask, request
 import smtplib
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 
@@ -18,16 +19,15 @@ def get_mail():
     to = request_data["to"]
     subject = request_data["subject"]
     body = request_data["body"]
-    
-    message = """\
-        Subject: %s
 
-        %s
-    """ % (subject, body)
+    message = MIMEText(body.capitalize())
+    message['From'] = server_username
+    message['To'] = to
+    message['Subject'] = subject.capitalize()
 
     server.login(server_username, server_password)
 
-    server.sendmail(server_username, to, message)
+    server.sendmail(server_username, to, message.as_string())
 
     return "Please Check your Inbox"
 
