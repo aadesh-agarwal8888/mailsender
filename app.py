@@ -16,7 +16,7 @@ def hello_world():
 
 @app.route('/emails', methods=["POST"])
 def get_mail():
-    request_data = request.get_json()
+    request_data = request.get_json(force=True)
     to = request_data["to"]
     subject = request_data["subject"]
     body = request_data["body"]
