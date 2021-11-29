@@ -5,6 +5,7 @@ The entire application is contained within `app.py`
 ## Installation
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install components.
 
+Set Virtual Environment
 ```bash
 virtualenv venv
 ```
@@ -17,12 +18,12 @@ For Windows:
 ```bash
 venv\scripts\activate
 ```
-
+Install Flask
 ```bash
 pip install Flask
 ```
 
-## Excecute
+## Execution
 To run the project
 ```bash
 python app.py
@@ -33,12 +34,40 @@ API details to receive an email
 
 ## Hello World
 Used to Print Hello World on Screen
+
 **URL** : `/`
+
 **Method** : `GET`
 
 ### Response
 `Hello World`
 
-About API:
-1. "/" to print Hello World
-2. "/emails" (Method = "POST") => 
+## Email
+Used to receive an email
+
+**URL** : `/emails`
+
+**Method** : `POST`
+
+**DATA**
+
+```json
+{
+    "to": "valid email address",
+    "subject": "subject of email",
+    "body": "body of the email"
+}
+```
+**Data Example**
+
+```json
+{
+    "to": "abcd@email.com",
+    "subject": "test",
+    "body": "hello bot"
+}
+```
+
+### Response
+
+`Please Check your Inbox`
