@@ -17,9 +17,15 @@ def hello_world():
 @app.route('/emails', methods=["POST"])
 def get_mail():
     request_data = request.get_json(force=True)
-    to = request_data["to"]
-    subject = request_data["subject"]
-    body = request_data["body"]
+    try:
+        to = request_data["to"]
+        subject = request_data["subject"]
+        body = request_data["body"]
+    except KeyError:
+        return "Please check the json object"
+    
+    if len(to) == 0:
+        return "Please check receiver mail address"
 
     bodyTrail = """\
         <html>
