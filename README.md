@@ -68,6 +68,14 @@ Used to receive an email
 }
 ```
 
-### Response
+### Success Response
 
-`Please Check your Inbox`
+**Content** : `Please Check your Inbox`
+
+### Error Response
+
+**Condition** : If any of the field is not specified in the request data
+**Content** : Please Check the Json Object
+
+**Condition** : If recepient mail address is not specified
+**Content** : Please check receiver mail address
