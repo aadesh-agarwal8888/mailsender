@@ -1,6 +1,7 @@
 from flask import Flask, request
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 
@@ -20,10 +21,29 @@ def get_mail():
     subject = request_data["subject"]
     body = request_data["body"]
 
-    message = MIMEText(body.capitalize())
+    bodyTrail = """\
+        <html>
+            <head></head>
+            <body>
+                <h1>%s</h1>
+                <h3>Regards</h3>
+                <h4>Aadesh Agarwal</h4>
+                <p>MEng Student at Virginia Tech<br>
+                Computer Science<br>
+                Fall 2023<br>
+                <a href="https://www.linkedin.com/in/aadesh-agarwal/">LinkedIn</a><br>
+                <a href="https://github.com/aadesh-agarwal8888">GitHub</a>
+                </p>
+            </body>
+        </html>
+        """ % (body.capitalize())
+
+    message = MIMEMultipart("alternative")
     message['From'] = "Future Intern - Task Complete"
     message['To'] = to
     message['Subject'] = subject.capitalize()
+    message.attach(MIMEText(body, 'plain'))
+    message.attach(MIMEText(bodyTrail, 'html'))
 
     server.login(server_username, server_password)
 
