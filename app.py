@@ -8,7 +8,7 @@ app = Flask(__name__)
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 
 server_username = "aadeshmailtester@gmail.com"
-server_password = "nowornever"
+server_password = ""
 
 @app.route('/')
 def hello_world():
